@@ -11,6 +11,7 @@ export default function Router() {
     {
       path: "/",
       children: [
+        { path: "/", element: <Navigate to="/login" /> },
         {
           path: "login",
           element: <AuthScreen />,

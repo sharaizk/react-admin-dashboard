@@ -1,9 +1,16 @@
 import React from "react";
 import styled from "styled-components";
-const Checkbox = ({ id, label }) => {
+const Checkbox = ({ id, label, value, handleChange, name }) => {
   return (
-    <CheckboxContainer>
-      <Checkboxx type="checkbox" id={id} />
+    <CheckboxContainer onClick={() => handleChange(name, !value)}>
+      <Checkboxx
+        type="checkbox"
+        name={name}
+        id={id}
+        value={value}
+        checked={Boolean(value)}
+        onChange={(e) => handleChange(e.target.name, e.target.value)}
+      />
       <Label>{label}</Label>
     </CheckboxContainer>
   );
@@ -25,7 +32,7 @@ const Checkboxx = styled.input`
   cursor: pointer;
 
   :checked {
-    accent-color: #4BB543;
+    accent-color: #4bb543;
   }
 `;
 const Label = styled.label`
@@ -35,4 +42,7 @@ const Label = styled.label`
   font-weight: 300;
   margin-left: 0.25rem;
   cursor: pointer;
+  @media screen and (max-width: 280px) {
+    font-size: 0.5rem;
+  }
 `;

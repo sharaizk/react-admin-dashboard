@@ -1,8 +1,15 @@
 import React from 'react'
-
+import { DashboardContainer,RightSection } from './Elements'
+import Sidebar from 'components/SideBar'
+import Topbar from 'components/TopBar'
 const Dashboard = () => {
   return (
-    <div>Dashboard</div>
+    <DashboardContainer>
+      <Sidebar />
+      <RightSection>
+        <Topbar />
+      </RightSection>
+    </DashboardContainer>
   )
 }
 

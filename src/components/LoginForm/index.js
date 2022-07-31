@@ -1,17 +1,16 @@
-import React from "react";
-import {
-  StyledForm,
-  StyledField,
-  SumbitButton,
-  LinksContainer,
-  Reset,
-  Error,
-} from "./Elements";
+import React, { useState } from "react";
+import { StyledForm, LinksContainer, Reset, Error } from "./Elements";
 import { useFormik, FormikProvider } from "formik";
+import { useNavigate } from "react-router-dom";
 import Checkbox from "components/Checkbox";
+import InputField from "components/InputField";
 import * as Yup from "yup";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import Button from "components/Button";
 
 const LoginForm = () => {
+  const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
   const LoginSchema = Yup.object().shape({
     email: Yup.string()
       .email("Email must be a valid email address")
@@ -23,51 +22,86 @@ const LoginForm = () => {
     initialValues: {
       email: "",
       password: "",
-      remember: true,
+      rememberme: true,
     },
     validationSchema: LoginSchema,
-    onSubmit: async (
-      values,
-      { setErrors, setStatus, setSubmitting, resetForm }
-    ) => {
-      console.log(values);
-      resetForm();
+    onSubmit: (values, { setErrors, setStatus, setSubmitting, resetForm }) => {
+      setTimeout(() => {
+        console.log(values);
+        setSubmitting(false);
+        resetForm();
+        navigate("/dashboard");
+      }, 3000);
+      // setSubmitting(true)
+      // resetForm();
     },
   });
-  const { errors, touched, values, isSubmitting, handleSubmit, getFieldProps } =
-    formik;
+  const {
+    errors,
+    touched,
+    values,
+    isSubmitting,
+    handleSubmit,
+    getFieldProps,
+    setFieldValue,
+  } = formik;
+
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
 
   return (
     <FormikProvider value={formik}>
       <StyledForm autoComplete="off" onSubmit={handleSubmit}>
-        <StyledField
+        <InputField
           type="email"
           name="email"
           value={values.email}
           placeholder="Email"
           $borderBottom="none"
-          {...getFieldProps("email")}
+          getFieldProps={getFieldProps("email")}
+          error={Boolean(errors.email && touched.email && errors.email)}
         />
         {errors.email && touched.email && errors.email && (
           <Error>{errors?.email}</Error>
         )}
-        <StyledField
-          type="password"
+        <InputField
+          type={showPassword ? "name" : "password"}
           name="password"
+          ParentIcon={
+            showPassword ? (
+              <AiOutlineEyeInvisible size={24} />
+            ) : (
+              <AiOutlineEye size={24} />
+            )
+          }
           value={values.password}
           placeholder="Password"
-          {...getFieldProps("password")}
+          getFieldProps={getFieldProps("password")}
+          iconFunction={handleShowPassword}
+          error={Boolean(
+            errors.password && touched.password && errors.password
+          )}
         />
         {errors.password && touched.password && errors.password && (
           <Error>{errors?.password}</Error>
         )}
         <LinksContainer>
-          <Checkbox id={"rememberme"} label={"Remember Me"} />
+          <Checkbox
+            id={"rememberme"}
+            label={"Remember Me"}
+            name="rememberme"
+            value={values?.rememberme}
+            handleChange={setFieldValue}
+          />
           <Reset to="reset-password">Forgot Password?</Reset>
         </LinksContainer>
-        <SumbitButton type="submit" disabled={isSubmitting}>
-          Sign In
-        </SumbitButton>
+        <Button
+          type="submit"
+          title="Sign In"
+          isLoading={isSubmitting}
+          disabled={false}
+        />
       </StyledForm>
     </FormikProvider>
   );

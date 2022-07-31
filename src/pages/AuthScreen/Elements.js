@@ -16,9 +16,13 @@ export const FormContainer = styled.div`
   flex-direction: column;
   border-radius: 20px;
   background-color: #fff;
-  padding: 1rem 2rem;
+  padding: 2rem 2rem;
   @media screen and (max-width: 768px) {
     width: auto;
+  }
+
+  @media screen and (max-width: 280px) {
+    padding: 1rem 1rem;
   }
 `;
 
@@ -29,4 +33,8 @@ export const FormLogo = styled.img`
 export const FormTitle = styled.h2`
   font-family: "Inter", sans-serif;
   margin-bottom: 3vh;
+
+  @media screen and (max-width: 280px) {
+    font-size: 1rem;
+  }
 `;
