@@ -8,7 +8,8 @@ const InputField = ({
   name,
   getFieldProps,
   iconFunction,
-  error
+  error,
+  variant = "outline",
 }) => {
   return (
     <IconFieldContainer>
@@ -19,6 +20,7 @@ const InputField = ({
         name={name}
         {...getFieldProps}
         $error={error}
+        variant={variant}
       />
       {ParentIcon && <Icon onClick={iconFunction}>{ParentIcon}</Icon>}
     </IconFieldContainer>

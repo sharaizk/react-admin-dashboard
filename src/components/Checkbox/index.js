@@ -42,6 +42,7 @@ const Label = styled.label`
   font-weight: 300;
   margin-left: 0.25rem;
   cursor: pointer;
+  color:${props=>props.theme.textColor};
   @media screen and (max-width: 280px) {
     font-size: 0.5rem;
   }

@@ -15,7 +15,7 @@ export const FormContainer = styled.div`
   align-items: center;
   flex-direction: column;
   border-radius: 20px;
-  background-color: #fff;
+  background-color: ${props=>props.theme.background2};
   padding: 2rem 2rem;
   @media screen and (max-width: 768px) {
     width: auto;

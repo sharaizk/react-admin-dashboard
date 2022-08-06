@@ -2,10 +2,15 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 export const SideBarContainer = styled.div`
   height: 100%;
-  background-color: #fff;
+  background-color: ${(props)=>props.theme.background2};
   flex: 0.225;
   border-radius: 15px;
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  overflow: auto;
   @media screen and (max-width: 768px) {
     display: none;
     position: fixed;
@@ -18,7 +23,7 @@ export const SideBarContainer = styled.div`
     flex-direction: column;
     top: 0%;
     right: 0%;
-    transition: 0.5s ease;
+    transition: right 0.5s ease;
     opacity: 100%;
     /* opacity: ${({ isOpen }) => (isOpen ? "100%" : "0%")}; */
     right: ${({ isOpen }) => (isOpen ? "50%" : "100%")};
@@ -39,8 +44,7 @@ export const SideBarHeader = styled.div`
   padding: 1rem;
 `;
 
-export const SideBarLogo=styled.img`
-`
+export const SideBarLogo = styled.img``;
 
 export const MenuBtn = styled.div`
   visibility: hidden;
@@ -64,10 +68,10 @@ export const SideBarRoutesContainer = styled.div`
 
 export const LinkRoute = styled(NavLink)`
   font-family: "Inter", sans-serif;
-  color: ${props=>props.isNested ? '#809FB8': '#384455'};
+  color: ${(props) => (props.isNested ? props.theme.textColor2 : props.theme.textColor)};
   text-decoration: none;
   margin-bottom: 1vh;
-  padding: 1rem;
+  padding: ${({$padding})=>($padding || '1rem')};
   border-radius: 10px;
   width: 100%;
   font-weight: 400;
@@ -94,7 +98,10 @@ export const NestedLinkContainer = styled.div`
   width: 100%;
   font-weight: 400;
   position: relative;
-  transition: all 0.2s ease-in;
+  transition: height 0.2s ease-in;
+  background-color: ${(props) =>
+    props.isOpen ? `${props.theme.background}` : `${props.theme.background2}`};
+  border-radius: 10px;
 `;
 
 export const LinkTitleContainter = styled.div`
@@ -103,6 +110,7 @@ export const LinkTitleContainter = styled.div`
   align-items: center;
   width: 100%;
   position: relative;
+  color: ${props=>props.theme.textColor};
   & p {
     font-size: 0.8rem;
     margin-left: 1rem;
@@ -110,21 +118,20 @@ export const LinkTitleContainter = styled.div`
 `;
 
 export const NestedLinks = styled.div`
-  height: 100%;
+  max-height: ${({ isOpen }) => (isOpen ? "1000px" : "0")};
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
-  padding: 1rem 0rem;
-  transition: all 0.2s ease-in;
+  padding: ${({ isOpen }) => (isOpen ? "1rem 0rem" : "0")};
+  transition: all 1s ease;
+  overflow: hidden;
+  width: 100%;
+  background-color: ${(props) => props.theme.background2};
+  border-radius: 10px;
+  margin-top: 5px;
   & a {
     margin-bottom: 0;
-  }
-  ::after{
-    content: '';
-    height: 100%;
-    width: auto;
-    border-left: 1px solid #000;
   }
 `;
 
@@ -132,5 +139,20 @@ export const DropIcon = styled.div`
   position: absolute;
   top: 60%;
   left: 88%;
-  transform: translateY(-50%);
+  transform: ${({ isOpen }) =>
+    !isOpen
+      ? "translateY(-40%) rotate(0deg)"
+      : "translateY(-80%) rotate(-180deg)"};
+  transition: all 0.2s ease-in-out;
 `;
+
+export const DropDownTitle = styled.p``;
+
+export const BottomContainter=styled.div`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  flex-direction: column;
+`

@@ -5,6 +5,7 @@ export const IconFieldContainer = styled.div`
   margin-bottom: 1vh;
   width: 100%;
   height: 100%;
+  background-color: transparent;
 `;
 
 export const Icon = styled.div`
@@ -32,4 +33,6 @@ export const Input = styled.input`
       : `1px solid ${props.theme.error}`};
   padding: 0.5rem 0rem 0.5rem 0.75rem;
   border-radius: 0.375rem;
+  background-color: transparent;
+  color: ${props=>props.theme.textColor};
 `;

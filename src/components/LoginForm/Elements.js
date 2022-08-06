@@ -25,7 +25,8 @@ export const Reset = styled(Link)`
   font-weight: 400;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  color: ${(props) => props.theme.buttonbg};
+  color: ${props=>props.theme.textColor};
+
   @media screen and (max-width: 280px) {
     font-size: 0.5rem;
   }
@@ -35,5 +36,5 @@ export const Error = styled.p`
   font-size: 0.75rem;
   text-align: start;
   margin-bottom: 1vh;
-  color: #ff3d3d;
+  color: ${props=>props.theme.error};
 `;

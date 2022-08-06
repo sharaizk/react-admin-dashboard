@@ -9,39 +9,41 @@ import {
   DropIcon,
   NestedLinks,
   LinkTitleContainter,
-  SideBarLogo
+  SideBarLogo,
+  DropDownTitle,
+  BottomContainter,
 } from "./Elements";
 import { Logo } from "utils/assets";
 import { useSelector, useDispatch } from "react-redux";
 import { Spin as Hamburger } from "hamburger-react";
 import { toggle } from "redux/reducers/layoutReducers";
 import { sidebarRoutes } from "utils/sidebar.config";
-
+import { BsChevronDown } from "react-icons/bs";
+import { AiOutlineLogout, AiOutlineSetting } from "react-icons/ai";
+import ThemeToggle from "components/ThemeToggle";
 const DropDownNav = ({ route, openedRoute, toggleDrop }) => {
   return (
-    <NestedLinkContainer>
+    <NestedLinkContainer isOpen={openedRoute.title === route.title}>
       <LinkTitleContainter
         onClick={() => {
           toggleDrop(route.title, true);
         }}
       >
         {route.icon}
-        <p>{route.title}</p>
-        <DropIcon>
-          {openedRoute.title !== route.title ? route.iconDown : route.iconUp}
+        <DropDownTitle>{route.title}</DropDownTitle>
+        <DropIcon isOpen={openedRoute.title === route.title}>
+          <BsChevronDown size={20} />
         </DropIcon>
       </LinkTitleContainter>
-      {openedRoute.title === route.title && (
-        <NestedLinks>
-          {route?.childrens?.map((children) => {
-            return (
-              <LinkRoute isNested={true} key={children?.id} to={children?.path}>
-                <p>{children.title}</p>
-              </LinkRoute>
-            );
-          })}
-        </NestedLinks>
-      )}
+      <NestedLinks isOpen={openedRoute.title === route.title}>
+        {route?.childrens?.map((children) => {
+          return (
+            <LinkRoute isNested={true} key={children?.id} to={children?.path}>
+              <p>{children.title}</p>
+            </LinkRoute>
+          );
+        })}
+      </NestedLinks>
     </NestedLinkContainer>
   );
 };
@@ -72,7 +74,7 @@ const Sidebar = () => {
   return (
     <SideBarContainer isOpen={sidebarToggle}>
       <SideBarHeader>
-        <SideBarLogo src={Logo} alt="logo"/>
+        <SideBarLogo src={Logo} alt="logo" />
         <MenuBtn>
           <Hamburger
             size={20}
@@ -101,6 +103,17 @@ const Sidebar = () => {
           );
         })}
       </SideBarRoutesContainer>
+      <BottomContainter>
+        <LinkRoute $padding="0.5rem 1rem" isNested={true} to={"/"}>
+          <AiOutlineSetting size={22} />
+          <p>Settings</p>
+        </LinkRoute>
+        <LinkRoute $padding="0.5rem 1rem" isNested={true} to={"/"}>
+          <AiOutlineLogout size={22} />
+          <p>Log Out</p>
+        </LinkRoute>
+        <ThemeToggle />
+      </BottomContainter>
     </SideBarContainer>
   );
 };

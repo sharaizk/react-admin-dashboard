@@ -4,8 +4,6 @@ import {
   BsLayoutWtf,
   BsBarChart,
   BsBag,
-  BsChevronDown,
-  BsChevronUp,
 } from "react-icons/bs";
 const sidebarRoutes = [
   {
@@ -31,8 +29,6 @@ const sidebarRoutes = [
     title: "Products",
     path: "/dashboard/products",
     icon: <BsBag size={24} />,
-    iconDown: <BsChevronDown size={20} />,
-    iconUp: <BsChevronUp size={20} />,
     childrens: [
       {
         id: 100,
