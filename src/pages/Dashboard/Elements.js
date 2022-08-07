@@ -1,22 +1,12 @@
 import styled from "styled-components";
 
 export const DashboardContainer = styled.div`
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 1rem 2rem;
-`;
-
-export const RightSection = styled.div`
-  height: 100%;
-  flex: 0.75;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-direction: column;
-  @media screen and (max-width:768px) {
-    flex: 1;
-  }
+  flex: 0.9;
+  border-radius: 10px;
 `;

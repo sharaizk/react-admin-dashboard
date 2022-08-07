@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 export const SideBarContainer = styled.div`
   height: 100%;
-  background-color: ${(props)=>props.theme.background2};
+  background-color: ${(props) => props.theme.background2};
   flex: 0.225;
   border-radius: 15px;
   padding: 1rem;
@@ -68,10 +68,11 @@ export const SideBarRoutesContainer = styled.div`
 
 export const LinkRoute = styled(NavLink)`
   font-family: "Inter", sans-serif;
-  color: ${(props) => (props.isNested ? props.theme.textColor2 : props.theme.textColor)};
+  color: ${(props) =>
+    props.$isNested ? props.theme.textColor2 : props.theme.textColor};
   text-decoration: none;
   margin-bottom: 1vh;
-  padding: ${({$padding})=>($padding || '1rem')};
+  padding: ${({ $padding }) => $padding || "1rem"};
   border-radius: 10px;
   width: 100%;
   font-weight: 400;
@@ -110,7 +111,7 @@ export const LinkTitleContainter = styled.div`
   align-items: center;
   width: 100%;
   position: relative;
-  color: ${props=>props.theme.textColor};
+  color: ${(props) => props.theme.textColor};
   & p {
     font-size: 0.8rem;
     margin-left: 1rem;
@@ -124,7 +125,7 @@ export const NestedLinks = styled.div`
   align-items: flex-start;
   flex-direction: column;
   padding: ${({ isOpen }) => (isOpen ? "1rem 0rem" : "0")};
-  transition: all 1s ease;
+  transition: max-height 1s ease, padding 1s ease;
   overflow: hidden;
   width: 100%;
   background-color: ${(props) => props.theme.background2};
@@ -143,16 +144,17 @@ export const DropIcon = styled.div`
     !isOpen
       ? "translateY(-40%) rotate(0deg)"
       : "translateY(-80%) rotate(-180deg)"};
-  transition: all 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, top 0.2s ease-in-out,
+    left 0.2s ease-in-out;
 `;
 
 export const DropDownTitle = styled.p``;
 
-export const BottomContainter=styled.div`
+export const BottomContainter = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
   flex-direction: column;
-`
+`;

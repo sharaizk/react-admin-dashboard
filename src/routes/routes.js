@@ -1,10 +1,14 @@
 import React from "react";
 import { useRoutes, Navigate } from "react-router-dom";
 
+// Layout:
+import DashboardLayout from "layouts/DashboardLayout";
+
 // Importing Pages
 import AuthScreen from "pages/AuthScreen";
 import Dashboard from "pages/Dashboard";
 import NotFound from "pages/NotFound";
+import Analytics from "pages/Analytics";
 
 export default function Router() {
   return useRoutes([
@@ -28,7 +32,21 @@ export default function Router() {
     },
     {
       path: "/dashboard",
-      element: <Dashboard />,
+      element: <DashboardLayout />,
+      children: [
+        {
+          path: "",
+          element: <Navigate to="main" />,
+        },
+        {
+          path: "main",
+          element: <Dashboard />,
+        },
+        {
+          path: "analytics",
+          element: <Analytics />,
+        },
+      ],
     },
     {
       path: "/*",

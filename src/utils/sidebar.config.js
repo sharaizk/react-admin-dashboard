@@ -9,7 +9,7 @@ const sidebarRoutes = [
   {
     id: 1,
     title: "Dashboard",
-    path: "/dashboard",
+    path: "/dashboard/main",
     icon: <BsLayoutWtf size={24} />,
   },
   {
@@ -25,7 +25,7 @@ const sidebarRoutes = [
     icon: <BsWallet2 size={22} />,
   },
   {
-    id: 3,
+    id: 4,
     title: "Products",
     path: "/dashboard/products",
     icon: <BsBag size={24} />,
@@ -48,7 +48,7 @@ const sidebarRoutes = [
     ],
   },
   {
-    id: 4,
+    id: 5,
     title: "Reports",
     path: "/dashboard/reports",
     icon: <BsFolder2 size={24} />,

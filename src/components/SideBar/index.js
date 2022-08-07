@@ -21,7 +21,10 @@ import { sidebarRoutes } from "utils/sidebar.config";
 import { BsChevronDown } from "react-icons/bs";
 import { AiOutlineLogout, AiOutlineSetting } from "react-icons/ai";
 import ThemeToggle from "components/ThemeToggle";
+import { useTheme } from "styled-components";
 const DropDownNav = ({ route, openedRoute, toggleDrop }) => {
+  const dispatch = useDispatch();
+
   return (
     <NestedLinkContainer isOpen={openedRoute.title === route.title}>
       <LinkTitleContainter
@@ -38,7 +41,9 @@ const DropDownNav = ({ route, openedRoute, toggleDrop }) => {
       <NestedLinks isOpen={openedRoute.title === route.title}>
         {route?.childrens?.map((children) => {
           return (
-            <LinkRoute isNested={true} key={children?.id} to={children?.path}>
+            <LinkRoute $isNested={true} onClick={()=>{
+              dispatch(toggle())
+            }} key={children?.id} to={children?.path}>
               <p>{children.title}</p>
             </LinkRoute>
           );
@@ -49,6 +54,7 @@ const DropDownNav = ({ route, openedRoute, toggleDrop }) => {
 };
 
 const Sidebar = () => {
+  const theme = useTheme();
   const [openedRoute, setOpenedRoute] = useState({
     title: "",
     opened: false,
@@ -80,6 +86,7 @@ const Sidebar = () => {
             size={20}
             toggled={sidebarToggle}
             toggle={() => dispatch(toggle())}
+            color={theme.buttonbg}
           />
         </MenuBtn>
       </SideBarHeader>
@@ -87,7 +94,13 @@ const Sidebar = () => {
         {sidebarRoutes?.map((route) => {
           if (!route?.childrens) {
             return (
-              <LinkRoute key={route?.id} to={route?.path}>
+              <LinkRoute
+                onClick={() => {
+                  dispatch(toggle());
+                }}
+                key={route?.id}
+                to={route?.path}
+              >
                 {route.icon}
                 <p>{route.title}</p>
               </LinkRoute>
@@ -99,16 +112,17 @@ const Sidebar = () => {
               openedRoute={openedRoute}
               setOpenedRoute={setOpenedRoute}
               toggleDrop={toggleDrop}
+              key={route.id}
             />
           );
         })}
       </SideBarRoutesContainer>
       <BottomContainter>
-        <LinkRoute $padding="0.5rem 1rem" isNested={true} to={"/"}>
+        <LinkRoute $padding="0.5rem 1rem" $isNested={true} to={"/"}>
           <AiOutlineSetting size={22} />
           <p>Settings</p>
         </LinkRoute>
-        <LinkRoute $padding="0.5rem 1rem" isNested={true} to={"/"}>
+        <LinkRoute $padding="0.5rem 1rem" $isNested={true} to={"/"}>
           <AiOutlineLogout size={22} />
           <p>Log Out</p>
         </LinkRoute>
