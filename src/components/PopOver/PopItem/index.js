@@ -29,7 +29,6 @@ const PopItem = ({
   const [anchorRect, setAnchorRect] = useState(null);
   const [selfRect, setSelfRect] = useState(null);
   const ref = useRef(null);
-
   useLayoutEffect(() => {
     const handler = () => {
       if (ref.current) {
@@ -43,7 +42,6 @@ const PopItem = ({
   }, [anchorEl]);
 
   const { selfLeft, selfTop } = getPosition(anchorRect, selfRect, anchorOrigin);
-
   return (
     <>
       {isOpen && <BackDrop onClick={() => setOpen(null)} />}
@@ -58,5 +56,5 @@ const PopItem = ({
     </>
   );
 };
-
 export default PopItem;
+PopItem.displayName='PopItem'

@@ -1,19 +1,23 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { PopOverContainer } from "./Elements";
 import { createPortal } from "react-dom";
+
+const Portal = ({ children }) => {
+  return createPortal(children, document.getElementById("presentation"));
+};
+
 const PopOver = ({ children }) => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const portalroot = useRef(document.body);
-
   const render = React.Children.map(children, (child) => {
-    if (child.type.name === "PopItem") {
-      return createPortal(
-        React.cloneElement(child, {
-          isOpen: Boolean(anchorEl),
-          setOpen: setAnchorEl,
-          anchorEl: anchorEl,
-        }),
-        portalroot.current
+    if (child.type?.displayName === "PopItem") {
+      return (
+        <Portal>
+          {React.cloneElement(child, {
+            isOpen: Boolean(anchorEl),
+            setOpen: setAnchorEl,
+            anchorEl: anchorEl,
+          })}
+        </Portal>
       );
     }
     return React.cloneElement(child, {

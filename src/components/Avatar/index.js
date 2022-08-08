@@ -13,7 +13,6 @@ import { AiOutlineLogout } from "react-icons/ai";
 import PopOver from "components/PopOver";
 import PopItem from "components/PopOver/PopItem";
 const Avatar = ({ src = "", alt = "", isOpen, onClick }) => {
-  console.log(isOpen);
   const theme = useTheme();
   return (
     <PopOver>
