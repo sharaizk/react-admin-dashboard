@@ -4,4 +4,7 @@ export const PopOverContainer = styled.div`
   /* width: 100%; */
   position: relative;
   /* z-index: 1; */
+  & {
+    cursor: pointer;
+  }
 `;

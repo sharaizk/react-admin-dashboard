@@ -48,4 +48,17 @@ body {
   user-select: none;
   box-sizing: border-box;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
-}`;
+}
+.apexcharts-yaxis-label {
+  fill:${(props) => props.theme.textColor};
+}
+.apexcharts-yaxis-title-text{
+  fill:${(props) => props.theme.textColor} !important;
+}
+.apexcharts-xaxis-label{
+  fill:${(props) => props.theme.textColor} !important;
+}
+.apexcharts-legend-text{
+  color:${(props) => props.theme.textColor} !important;
+}
+`;

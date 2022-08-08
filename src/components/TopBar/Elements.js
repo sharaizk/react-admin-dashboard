@@ -3,9 +3,9 @@ import styled from "styled-components";
 export const TopbarContainer = styled.div`
   width: 100%;
   background-color: ${(props) => props.theme.background2};
-  flex: 0.05;
+  flex: 0.025;
   border-radius: 15px;
-  padding: 1rem 1rem;
+  padding: 0.25rem 0.5rem;
   display: flex;
   justify-content: flex-end;
   align-items: center;

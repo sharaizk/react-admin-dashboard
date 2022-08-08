@@ -5,10 +5,10 @@ const getPosition = (anchorRect, selfRect, anchorOrigin) => {
   let selfLeft = 0;
   let selfTop = 0;
 
-  if (anchorRect && selfRect) {
-    selfLeft = anchorRect.left;
-    selfTop = anchorRect.bottom;
-  }
+  // if (anchorRect && selfRect) {
+    selfLeft = anchorRect?.left;
+    selfTop = anchorRect?.bottom;
+  // }
 
   return {
     selfLeft,
