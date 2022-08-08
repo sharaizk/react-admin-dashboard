@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { PopOverContainer } from "./Elements";
 import { createPortal } from "react-dom";
-
+const portalroot = document.getElementById('presentation')
 const PopOver = ({ children }) => {
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -13,7 +13,7 @@ const PopOver = ({ children }) => {
           setOpen: setAnchorEl,
           anchorEl: anchorEl,
         }),
-        document.getElementById('presentation')
+        portalroot
       );
     }
     return React.cloneElement(child, {
