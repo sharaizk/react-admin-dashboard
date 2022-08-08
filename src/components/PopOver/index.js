@@ -3,7 +3,7 @@ import { PopOverContainer } from "./Elements";
 import { createPortal } from "react-dom";
 const PopOver = ({ children }) => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const portalroot = useRef(document.getElementById("presentation"));
+  const portalroot = useRef(document.body);
 
   const render = React.Children.map(children, (child) => {
     if (child.type.name === "PopItem") {
