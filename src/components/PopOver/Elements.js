@@ -3,9 +3,5 @@ export const PopOverContainer = styled.div`
   /* height: 100%; */
   /* width: 100%; */
   position: relative;
-`;
-
-export const Popper = styled.div`
-  height: 100%;
-  width: 100%;
+  /* z-index: 1; */
 `;

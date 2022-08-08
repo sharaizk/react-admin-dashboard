@@ -9,7 +9,6 @@ export const AvatarContainer = styled.div`
   align-items: center;
   border-radius: 50%;
   cursor: pointer;
-  position: relative;
 `;
 
 export const AvatarImage = styled.img`
@@ -17,7 +16,6 @@ export const AvatarImage = styled.img`
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  z-index: 2;
 `;
 
 export const ArrowContainer = styled.div`

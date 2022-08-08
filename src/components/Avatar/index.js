@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   AvatarContainer,
   AvatarImage,
-  PopoverContainer,
   ArrowContainer,
   LinkContainer,
   StyledLink,
@@ -11,20 +10,20 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 import { useTheme } from "styled-components";
 import { MdOutlineManageAccounts } from "react-icons/md";
 import { AiOutlineLogout } from "react-icons/ai";
-const Avatar = ({ src = "", alt = "" }) => {
+import PopOver from "components/PopOver";
+import PopItem from "components/PopOver/PopItem";
+const Avatar = ({ src = "", alt = "", isOpen, onClick }) => {
+  console.log(isOpen);
   const theme = useTheme();
-  const [openPopOver, setOpenPopover] = useState(false);
   return (
-    <AvatarContainer
-      onClick={() => {
-        setOpenPopover(!openPopOver);
-      }}
-    >
-      <AvatarImage src={src} alt={alt} />
-      <ArrowContainer $isOpen={openPopOver}>
-        <MdKeyboardArrowDown color={theme.borderSimple} size={20} />
-      </ArrowContainer>
-      <PopoverContainer $isOpen={openPopOver}>
+    <PopOver>
+      <AvatarContainer onClick={onClick}>
+        <AvatarImage src={src} alt={alt} />
+        <ArrowContainer $isOpen={isOpen}>
+          <MdKeyboardArrowDown color={theme.borderSimple} size={20} />
+        </ArrowContainer>
+      </AvatarContainer>
+      <PopItem>
         <LinkContainer>
           <MdOutlineManageAccounts size={20} />
           <StyledLink to="/dashboard/account-setting">
@@ -35,8 +34,8 @@ const Avatar = ({ src = "", alt = "" }) => {
           <AiOutlineLogout size={20} />
           <p>Log Out</p>
         </LinkContainer>
-      </PopoverContainer>
-    </AvatarContainer>
+      </PopItem>
+    </PopOver>
   );
 };
 

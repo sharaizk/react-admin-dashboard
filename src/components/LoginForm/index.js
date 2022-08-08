@@ -30,7 +30,7 @@ const LoginForm = () => {
         console.log(values);
         setSubmitting(false);
         resetForm();
-        navigate("/dashboard");
+        navigate("/dashboard/main");
       }, 3000);
       // setSubmitting(true)
       // resetForm();

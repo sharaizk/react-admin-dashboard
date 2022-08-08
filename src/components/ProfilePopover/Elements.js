@@ -6,7 +6,7 @@ export const ProfileContainer = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  & div {
+  & > div {
     margin-left: 1rem;
   }
   & > svg {

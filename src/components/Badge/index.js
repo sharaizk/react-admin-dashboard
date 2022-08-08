@@ -1,8 +1,8 @@
 import React from "react";
 import { BadgeContainer, BadgeNoti } from "./Elements";
-const Badge = ({ children, count }) => {
+const Badge = ({ children, count, onClick }) => {
   return (
-    <BadgeContainer>
+    <BadgeContainer onClick={onClick}>
       {children}
       <BadgeNoti>{count}</BadgeNoti>
     </BadgeContainer>
