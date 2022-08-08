@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { PopOverContainer } from "./Elements";
 import { createPortal } from "react-dom";
-const portalroot = document.getElementById('presentation')
 const PopOver = ({ children }) => {
   const [anchorEl, setAnchorEl] = useState(null);
+  const portalroot = useRef(document.getElementById("presentation"));
 
   const render = React.Children.map(children, (child) => {
     if (child.type.name === "PopItem") {
@@ -13,14 +13,14 @@ const PopOver = ({ children }) => {
           setOpen: setAnchorEl,
           anchorEl: anchorEl,
         }),
-        portalroot
+        portalroot.current
       );
     }
     return React.cloneElement(child, {
       onClick: (e) => {
         setAnchorEl(e.currentTarget);
       },
-      isOpen:Boolean(anchorEl)
+      isOpen: Boolean(anchorEl),
     });
   });
   return <PopOverContainer>{render}</PopOverContainer>;
