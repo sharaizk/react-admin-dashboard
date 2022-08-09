@@ -4,10 +4,18 @@ import {
   DashboardSection,
   ChartContainer,
   CardTitle,
+  CardDetail,
 } from "./Elements";
 import { GoKebabHorizontal } from "react-icons/go";
 import Chart from "react-apexcharts";
-import { monthlyStats, monthlyStatsOptions, dataGraphStats,dataGraphOptions } from "_mock";
+import {
+  monthlyStats,
+  monthlyStatsOptions,
+  dataGraphStats,
+  dataGraphOptions,
+  productEarnings,
+} from "_mock";
+import Stat from "components/Stat";
 const Dashboard = () => {
   return (
     <DashboardContainer>
@@ -17,6 +25,11 @@ const Dashboard = () => {
             <p>Product Earnings</p>
             <GoKebabHorizontal size={20} />
           </CardTitle>
+          <CardDetail>
+            {productEarnings?.map((product) => {
+              return <Stat stat={product.stat} key={product.id} />;
+            })}
+          </CardDetail>
         </ChartContainer>
         <ChartContainer $flex={0.31}>
           <CardTitle>

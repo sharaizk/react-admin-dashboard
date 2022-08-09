@@ -44,3 +44,12 @@ export const CardTitle = styled.div`
   font-size: 0.9rem;
   font-weight: 500;
 `;
+
+export const CardDetail = styled.div`
+  height: 95%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: column;
+`
